@@ -38,14 +38,26 @@ DOCUMENTATION = """
                 - The Netbox object type to query
             required: True
         api_endpoint:
+            env:
+                - name: NETBOX_API
+            ini:
+              - section: netbox
+                key: api_endpoint
             description:
                 - The URL to the Netbox instance to query
-            required: True
+            required: False
         api_filter:
             description:
                 - The api_filter to use.
             required: False
         token:
+            env:
+                # in order of precedence
+                - name: NETBOX_TOKEN
+                - name: NETBOX_API_KEY
+            ini:
+              - section: netbox
+                key: token
             description:
                 - The API token created through Netbox
                 - This may not be required depending on the Netbox setup.
@@ -194,9 +206,9 @@ class LookupModule(LookupBase):
 
     def run(self, terms, variables=None, **kwargs):
 
-        netbox_api_token = kwargs.get("token")
-        netbox_api_endpoint = kwargs.get("api_endpoint")
-        netbox_ssl_verify = kwargs.get("validate_certs", True)
+        netbox_api_token = self.get_option("token")
+        netbox_api_endpoint = self.get_option("api_endpoint")
+        netbox_ssl_verify = self.get_option("validate_certs")
         netbox_private_key_file = kwargs.get("key_file")
         netbox_api_filter = kwargs.get("api_filter")
         netbox_raw_return = kwargs.get("raw_data")
