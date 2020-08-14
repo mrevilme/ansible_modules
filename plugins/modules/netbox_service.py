@@ -29,14 +29,20 @@ version_added: '0.1.5'
 options:
   netbox_url:
     description:
-      - URL of the Netbox instance resolvable by Ansible control host
+      - "URL of the Netbox instance resolvable by Ansible control host"
     required: true
     type: str
+    ini:
+      - section: netbox
+        key: api_endpoint
   netbox_token:
     description:
-      - The token created within Netbox to authorize API access
+      - "The token created within Netbox to authorize API access"
     required: true
     type: str
+    ini:
+      - section: netbox
+        key: token
   data:
     type: dict
     description:

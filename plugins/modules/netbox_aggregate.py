@@ -33,11 +33,17 @@ options:
       - "URL of the Netbox instance resolvable by Ansible control host"
     required: true
     type: str
+    ini:
+      - section: netbox
+        key: api_endpoint
   netbox_token:
     description:
       - "The token created within Netbox to authorize API access"
     required: true
     type: str
+    ini:
+      - section: netbox
+        key: token
   data:
     description:
       - "Defines the aggregate configuration"

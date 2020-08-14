@@ -28,6 +28,9 @@ DOCUMENTATION = """
         api_endpoint:
             description: Endpoint of the NetBox API
             required: True
+            ini:
+              - section: netbox
+                key: api_endpoint
             env:
                 - name: NETBOX_API
         validate_certs:
@@ -65,6 +68,9 @@ DOCUMENTATION = """
             version_added: "0.2.1"
         token:
             required: False
+            ini:
+              - section: netbox
+                key: token
             description:
               - NetBox API token to be able to read against NetBox.
               - This may not be required depending on the NetBox setup.
